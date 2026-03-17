@@ -73,33 +73,62 @@
     box-shadow: 0 0 30px rgba(255, 123, 0, 0.5);
   }
 
+  /* Button Basis-Styles */
   .order-btn {
-    display: inline-block;
-    background: #25D366;
-    padding: 15px 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 30px;
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
     text-decoration: none;
     border-radius: 50px;
-    margin-top: 20px;
+    margin: 10px 8px;
     transition: all 0.3s ease;
     border: none;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    background: #333; /* Fallback */
   }
 
   .order-btn:hover {
     transform: scale(1.05);
     filter: brightness(1.1);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  }
+
+  /* Button-spezifische Hintergründe */
+  .whatsapp-btn {
+    background: #25D366;
+  }
+
+  .instagram-btn {
+    background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5);
+    background-size: 200% 200%;
+    animation: gradientShift 5s ease infinite;
   }
 
   .maps-btn {
     background: #ff7b00;
   }
 
-  .maps-btn:hover {
-    box-shadow: 0 6px 20px rgba(255, 123, 0, 0.4);
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Logo-Bilder in Buttons */
+  .btn-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Macht das Logo weiß, falls nötig */
+  }
+
+  /* Speziell für Instagram-Logo - kein Farbfilter, da wir Farbverlauf haben */
+  .instagram-btn .btn-logo {
+    filter: brightness(0) invert(1); /* Weißes Instagram-Logo für Kontrast */
   }
 
   /* Sektionen */
@@ -110,7 +139,7 @@
     text-align: center;
   }
 
-  /* DYNAMISCHE FEATURE-BOXEN */
+  /* Dynamische Feature-Boxen */
   .features {
     display: flex;
     justify-content: center;
@@ -123,14 +152,14 @@
     background: #000000;
     padding: 25px 20px;
     border-radius: 20px;
-    flex: 1 1 250px;        /* Dynamisch: wächst/schrumpft, mindestens 250px */
+    flex: 1 1 250px;
     min-width: 250px;
     max-width: 350px;
     border: 1px solid #333;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    height: auto;           /* Automatische Höhe */
+    height: auto;
   }
 
   .box:hover {
@@ -152,14 +181,10 @@
     font-size: 1rem;
     word-wrap: break-word;
     hyphens: auto;
-    flex: 1;                /* Nimmt restlichen Platz ein */
+    flex: 1;
   }
 
-  /* Menü-Bilder - jetzt klickbar für Lightbox */
-  .menu {
-    position: relative;
-  }
-
+  /* Menü-Bilder */
   .menu-image-container {
     margin: 30px auto;
     max-width: 860px;
@@ -178,10 +203,10 @@
     border-radius: 20px;
     border: 2px solid #ff7b00;
     box-shadow: 0 15px 30px rgba(0,0,0,0.8);
-    pointer-events: none;  /* Klick geht an Container */
+    pointer-events: none;
   }
 
-  /* Lightbox für vergrößerte Bilder */
+  /* Lightbox */
   .lightbox {
     display: none;
     position: fixed;
@@ -255,12 +280,13 @@
     border: 1px solid #ff7b00;
   }
 
+  /* Button Container */
   .button-container {
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin: 20px 0;
   }
 
   /* Footer */
@@ -306,7 +332,7 @@
     }
     
     .box {
-      min-width: 100%;      /* Auf Mobil volle Breite */
+      min-width: 100%;
       max-width: 100%;
     }
     
@@ -323,14 +349,20 @@
     
     .order-btn {
       width: 80%;
-      max-width: 300px;
+      max-width: 320px;
       margin: 5px 0;
+      padding: 12px 20px;
     }
 
     .lightbox-close {
       top: 10px;
       right: 15px;
       font-size: 35px;
+    }
+
+    .btn-logo {
+      width: 20px;
+      height: 20px;
     }
   }
 
@@ -347,15 +379,23 @@
 
 <header>
   <div class="logo-container">
-    <img src="Logo.png" alt="Wing Spot Logo" class="logo-img">
+    <img src="Logo.jpg" alt="Wing Spot Logo" class="logo-img">
   </div>
   
-  <a class="order-btn" href="https://wa.me/4915129641740">
-    📱 Jetzt per WhatsApp bestellen
-  </a>
+  <!-- Header Buttons mit Bildern -->
+  <div class="button-container">
+    <a class="order-btn whatsapp-btn" href="https://wa.me/4915129641740">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="btn-logo">
+      WhatsApp
+    </a>
+    <a class="order-btn instagram-btn" href="https://www.instagram.com/official_wingspot/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="btn-logo">
+      Instagram
+    </a>
+  </div>
 </header>
 
-<!-- Feature-Bereich mit dynamischen Boxen -->
+<!-- Feature-Bereich -->
 <div class="section">
   <div class="features">
     <div class="box">
@@ -364,7 +404,7 @@
     </div>
     <div class="box">
       <h3>🥣 Hausgemachte Dips</h3>
-      <p>Sweet Mango, Zesty Lemon, Smoky BBQ, Garlic Parmesan, Cranberry Explosion, Hot Honey, Mango Fire, Louisiana Cajun.</p>
+      <p>Sweet Mango, Zesty Lemon, Smoky BBQ, Garlic Parmesan, Cranberry Explosion, Hot Honey, Mango Fire, Louisiana Cajun</p>
     </div>
     <div class="box">
       <h3>🍟 Knusprige Fries</h3>
@@ -373,7 +413,7 @@
   </div>
 </div>
 
-<!-- Speisekarte Bereich mit klickbaren Bildern -->
+<!-- Speisekarte Bereich -->
 <div class="section menu">
   <h2>Unsere Speisekarte</h2>
   
@@ -386,22 +426,28 @@
   </div>
 </div>
 
-<!-- Standort Bereich -->
+<!-- Standort Bereich mit Buttons + Instagram "Folge mir" -->
 <div class="section">
   <h2>Standort</h2>
   <p>📍 Helfmann Park, Eschborn</p>
 
   <div class="button-container">
-    <a class="order-btn" href="https://wa.me/4915129641740">
-      📲 Jetzt bestellen
+    <a class="order-btn whatsapp-btn" href="https://wa.me/4915129641740">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="btn-logo">
+      Jetzt bestellen
     </a>
     <a class="order-btn maps-btn" href="https://maps.app.goo.gl/MmknDqViQUEWmQbZ9" target="_blank">
-      🗺️ Google Maps
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Google_Maps_icon_%282020%29.svg" alt="Google Maps" class="btn-logo">
+      Google Maps
+    </a>
+    <a class="order-btn instagram-btn" href="https://www.instagram.com/official_wingspot/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="btn-logo">
+      Folge mir auf Instagram!
     </a>
   </div>
 </div>
 
-<!-- Lightbox für vergrößerte Bilder -->
+<!-- Lightbox -->
 <div id="lightbox" class="lightbox" onclick="closeLightbox()">
   <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
   <img id="lightbox-img" src="" alt="Vergrößerte Ansicht">
@@ -412,28 +458,32 @@
   <p>© 2026 Wing Spot</p>
   <p>Telefon / WhatsApp: 01512 9641740</p>
   <p>📍 Helfmann Park, Eschborn</p>
+  <div style="margin-top: 20px;">
+    <a class="order-btn instagram-btn" href="https://www.instagram.com/official_wingspot/" target="_blank" style="margin: 0;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="btn-logo">
+      Folge mir auf Instagram!
+    </a>
+  </div>
 </footer>
 
 <script>
-  // Lightbox Funktionen
   function openLightbox(imageSrc) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     lightboxImg.src = imageSrc;
     lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Verhindert Scrollen im Hintergrund
+    document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox(event) {
     if (event) {
-      event.stopPropagation(); // Verhindert, dass der Klick auf das Bild die Lightbox schließt
+      event.stopPropagation();
     }
     const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('active');
-    document.body.style.overflow = ''; // Scrollen wieder erlauben
+    document.body.style.overflow = '';
   }
 
-  // Lightbox schließen mit Escape-Taste
   document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
       const lightbox = document.getElementById('lightbox');
@@ -443,7 +493,6 @@
     }
   });
 
-  // Verhindert, dass Klick auf das Bild die Lightbox schließt
   document.getElementById('lightbox-img').addEventListener('click', function(event) {
     event.stopPropagation();
   });
