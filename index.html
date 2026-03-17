@@ -20,7 +20,7 @@
     position: relative;
   }
 
-  /* Flammen-GIF als overlay – wie im Original */
+  /* Flammen-GIF als overlay */
   body::before {
     content: "";
     position: fixed;
@@ -36,59 +36,43 @@
     pointer-events: none;
   }
 
-  /* Sicherstellen, dass Inhalt über dem Flammen-Overlay liegt */
   header, .section, footer {
     position: relative;
     z-index: 2;
   }
 
-  /* Header mit schwarzem Hintergrund */
+  /* Header */
   header {
-    background: #000000;    /* Reines Schwarz für perfekte Anpassung */
+    background: #000000;
     text-align: center;
     padding: 30px 20px 40px 20px;
     border-bottom: 3px solid #ff7b00;
   }
 
-  /* LOGO-BEREICH - speziell für Logo mit schwarzem Hintergrund */
   .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
-    background: transparent; /* Container bleibt durchsichtig */
   }
 
   .logo-img {
-    max-width: 420px;        /* Etwas größer für bessere Wirkung */
+    max-width: 420px;
     width: 90%;
     height: auto;
-    background-color: #000000; /* Schwarzer Hintergrund für das Logo */
+    background-color: #000000;
     display: inline-block;
-    padding: 10px 20px;      /* Innenabstand für mehr schwarzen Raum */
-    border-radius: 30px;      /* Dezente Abrundung für modernen Look */
-    box-shadow: 0 0 20px rgba(255, 123, 0, 0.3); /* Leichter oranger Schimmer */
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(255, 123, 0, 0.3);
     transition: transform 0.3s ease;
   }
 
   .logo-img:hover {
-    transform: scale(1.02);   /* Leichter Hover-Effekt */
+    transform: scale(1.02);
     box-shadow: 0 0 30px rgba(255, 123, 0, 0.5);
   }
 
-  /* Slogan unter dem Logo */
-  .slogan {
-    color: #ff7b00;
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    font-weight: 400;
-    text-transform: uppercase;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  }
-
-  /* Buttons (WhatsApp & Maps) */
   .order-btn {
     display: inline-block;
     background: #25D366;
@@ -118,7 +102,7 @@
     box-shadow: 0 6px 20px rgba(255, 123, 0, 0.4);
   }
 
-  /* Sektionen allgemein */
+  /* Sektionen */
   .section {
     max-width: 1100px;
     margin: auto;
@@ -126,7 +110,7 @@
     text-align: center;
   }
 
-  /* Feature-Boxen */
+  /* DYNAMISCHE FEATURE-BOXEN */
   .features {
     display: flex;
     justify-content: center;
@@ -139,9 +123,14 @@
     background: #000000;
     padding: 25px 20px;
     border-radius: 20px;
-    width: 260px;
+    flex: 1 1 250px;        /* Dynamisch: wächst/schrumpft, mindestens 250px */
+    min-width: 250px;
+    max-width: 350px;
     border: 1px solid #333;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: auto;           /* Automatische Höhe */
   }
 
   .box:hover {
@@ -154,29 +143,94 @@
     color: #ff7b00;
     margin-bottom: 15px;
     font-size: 1.6rem;
+    flex-shrink: 0;
   }
 
   .box p {
     line-height: 1.6;
     color: #ddd;
     font-size: 1rem;
+    word-wrap: break-word;
+    hyphens: auto;
+    flex: 1;                /* Nimmt restlichen Platz ein */
   }
 
-  /* Menü-Bilder */
-  .menu img {
-    width: 100%;
-    max-width: 860px;
+  /* Menü-Bilder - jetzt klickbar für Lightbox */
+  .menu {
+    position: relative;
+  }
+
+  .menu-image-container {
     margin: 30px auto;
+    max-width: 860px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-image-container:hover {
+    transform: scale(1.02);
+  }
+
+  .menu-image-container img {
+    width: 100%;
+    height: auto;
     display: block;
     border-radius: 20px;
     border: 2px solid #ff7b00;
     box-shadow: 0 15px 30px rgba(0,0,0,0.8);
-    transition: transform 0.3s ease;
+    pointer-events: none;  /* Klick geht an Container */
   }
 
-  .menu img:hover {
-    transform: scale(1.01);
-    border-color: #ff9500;
+  /* Lightbox für vergrößerte Bilder */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .lightbox.active {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border: 3px solid #ff7b00;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(255, 123, 0, 0.3);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 1001;
+    background: rgba(0,0,0,0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .lightbox-close:hover {
+    color: #ff7b00;
+    transform: scale(1.1);
+    background: rgba(0,0,0,0.8);
   }
 
   /* Überschriften */
@@ -201,7 +255,6 @@
     border: 1px solid #ff7b00;
   }
 
-  /* Button-Container für bessere Anordnung */
   .button-container {
     display: flex;
     justify-content: center;
@@ -230,6 +283,17 @@
     font-weight: bold;
   }
 
+  /* Animation für Logo */
+  @keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(255, 123, 0, 0.3); }
+    50% { box-shadow: 0 0 35px rgba(255, 123, 0, 0.6); }
+    100% { box-shadow: 0 0 20px rgba(255, 123, 0, 0.3); }
+  }
+
+  .logo-img {
+    animation: glow 3s infinite ease-in-out;
+  }
+
   /* Mobile Anpassungen */
   @media (max-width: 600px) {
     .logo-img {
@@ -237,18 +301,13 @@
       padding: 8px 15px;
     }
     
-    .slogan {
-      font-size: 1rem;
-      padding: 0 10px;
-    }
-    
     h2 {
       font-size: 1.9rem;
     }
     
     .box {
-      width: 100%;
-      max-width: 320px;
+      min-width: 100%;      /* Auf Mobil volle Breite */
+      max-width: 100%;
     }
     
     .section p {
@@ -267,35 +326,36 @@
       max-width: 300px;
       margin: 5px 0;
     }
+
+    .lightbox-close {
+      top: 10px;
+      right: 15px;
+      font-size: 35px;
+    }
   }
 
-  /* Kleine Animation für den Header */
-  @keyframes glow {
-    0% { box-shadow: 0 0 20px rgba(255, 123, 0, 0.3); }
-    50% { box-shadow: 0 0 35px rgba(255, 123, 0, 0.6); }
-    100% { box-shadow: 0 0 20px rgba(255, 123, 0, 0.3); }
-  }
-
-  .logo-img {
-    animation: glow 3s infinite ease-in-out;
+  /* Tablet Anpassungen */
+  @media (min-width: 601px) and (max-width: 900px) {
+    .box {
+      min-width: 280px;
+      max-width: 320px;
+    }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <!-- Logo mit schwarzem Hintergrund -->
   <div class="logo-container">
     <img src="Logo.jpg" alt="Wing Spot Logo" class="logo-img">
   </div>
   
-  <!-- WhatsApp-Button -->
   <a class="order-btn" href="https://wa.me/4915129641740">
     📱 Jetzt per WhatsApp bestellen
   </a>
 </header>
 
-<!-- Feature-Bereich -->
+<!-- Feature-Bereich mit dynamischen Boxen -->
 <div class="section">
   <div class="features">
     <div class="box">
@@ -313,11 +373,17 @@
   </div>
 </div>
 
-<!-- Speisekarte Bereich -->
+<!-- Speisekarte Bereich mit klickbaren Bildern -->
 <div class="section menu">
   <h2>Unsere Speisekarte</h2>
-  <img src="menu1.jpg" alt="Speisekarte Seite 1">
-  <img src="menu2.jpg" alt="Speisekarte Seite 2">
+  
+  <div class="menu-image-container" onclick="openLightbox('menu1.jpg')">
+    <img src="menu1.jpg" alt="Speisekarte Seite 1">
+  </div>
+  
+  <div class="menu-image-container" onclick="openLightbox('menu2.jpg')">
+    <img src="menu2.jpg" alt="Speisekarte Seite 2">
+  </div>
 </div>
 
 <!-- Standort Bereich -->
@@ -325,16 +391,20 @@
   <h2>Standort</h2>
   <p>📍 Helfmann Park, Eschborn</p>
 
-  <!-- Button-Container für bessere Anordnung -->
   <div class="button-container">
     <a class="order-btn" href="https://wa.me/4915129641740">
       📲 Jetzt bestellen
     </a>
-
     <a class="order-btn maps-btn" href="https://maps.app.goo.gl/MmknDqViQUEWmQbZ9" target="_blank">
       🗺️ Google Maps
     </a>
   </div>
+</div>
+
+<!-- Lightbox für vergrößerte Bilder -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+  <img id="lightbox-img" src="" alt="Vergrößerte Ansicht">
 </div>
 
 <!-- Footer -->
@@ -343,6 +413,41 @@
   <p>Telefon / WhatsApp: 01512 9641740</p>
   <p>📍 Helfmann Park, Eschborn</p>
 </footer>
+
+<script>
+  // Lightbox Funktionen
+  function openLightbox(imageSrc) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = imageSrc;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Verhindert Scrollen im Hintergrund
+  }
+
+  function closeLightbox(event) {
+    if (event) {
+      event.stopPropagation(); // Verhindert, dass der Klick auf das Bild die Lightbox schließt
+    }
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = ''; // Scrollen wieder erlauben
+  }
+
+  // Lightbox schließen mit Escape-Taste
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    }
+  });
+
+  // Verhindert, dass Klick auf das Bild die Lightbox schließt
+  document.getElementById('lightbox-img').addEventListener('click', function(event) {
+    event.stopPropagation();
+  });
+</script>
 
 </body>
 </html>
