@@ -7,7 +7,25 @@
 <title>Wing Spot – Premium Street Food</title>
 
 <style>
-
+header, .section, footer {
+position: relative;
+z-index: 2;
+}
+  
+body::before {
+content: "";
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 300px;
+background: url('flames.gif') repeat-x bottom;
+background-size: contain;
+opacity: 0.4;
+z-index: 0;
+pointer-events: none;
+}
+  
 body{
 margin:0;
 font-family:Arial;
