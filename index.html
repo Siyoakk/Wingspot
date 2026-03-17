@@ -42,63 +42,80 @@
     z-index: 2;
   }
 
-  /* NEU: Header mit dunklem Hintergrund – perfekt für Logo */
+  /* Header mit schwarzem Hintergrund */
   header {
-    background: #0a0a0a;    /* fast schwarz, aber etwas weicher */
+    background: #000000;    /* Reines Schwarz für perfekte Anpassung */
     text-align: center;
     padding: 30px 20px 40px 20px;
-    border-bottom: 3px solid #ff7b00;   /* kleiner Akzent */
+    border-bottom: 3px solid #ff7b00;
   }
 
-  /* LOGO-BEREICH: Statt Text "WING SPOT" jetzt das Bild */
+  /* LOGO-BEREICH - speziell für Logo mit schwarzem Hintergrund */
   .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+    background: transparent; /* Container bleibt durchsichtig */
   }
 
   .logo-img {
-    max-width: 320px;       /* passt sich an, groß genug für Lesbarkeit */
+    max-width: 380px;        /* Etwas größer für bessere Wirkung */
     width: 90%;
     height: auto;
-    filter: drop-shadow(0 0 8px rgba(255, 123, 0, 0.5)); /* dezenter Glanz */
+    background-color: #000000; /* Schwarzer Hintergrund für das Logo */
+    display: inline-block;
+    padding: 10px 20px;      /* Innenabstand für mehr schwarzen Raum */
+    border-radius: 30px;      /* Dezente Abrundung für modernen Look */
+    box-shadow: 0 0 20px rgba(255, 123, 0, 0.3); /* Leichter oranger Schimmer */
+    transition: transform 0.3s ease;
   }
 
-  /* Slogan unter dem Logo – wie im JPG */
+  .logo-img:hover {
+    transform: scale(1.02);   /* Leichter Hover-Effekt */
+    box-shadow: 0 0 30px rgba(255, 123, 0, 0.5);
+  }
+
+  /* Slogan unter dem Logo */
   .slogan {
     color: #ff7b00;
     font-size: 1.3rem;
     letter-spacing: 1px;
-    margin-top: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
     font-weight: 400;
     text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
 
   /* Buttons (WhatsApp & Maps) */
   .order-btn {
     display: inline-block;
-    background: #25D366;      /* WhatsApp-grün */
-    padding: 15px 30px;
+    background: #25D366;
+    padding: 15px 35px;
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
     text-decoration: none;
-    border-radius: 50px;       /* moderner, runder */
+    border-radius: 50px;
     margin-top: 20px;
-    transition: 0.2s;
+    transition: all 0.3s ease;
     border: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   }
 
   .order-btn:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
     filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
   }
 
-  /* zweiter Button (Maps) bekommt eigene Farbe */
   .maps-btn {
-    background: #ff7b00;       /* Orange passend zum Logo */
+    background: #ff7b00;
+  }
+
+  .maps-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 123, 0, 0.4);
   }
 
   /* Sektionen allgemein */
@@ -109,7 +126,7 @@
     text-align: center;
   }
 
-  /* Feature-Boxen (frisch, dips, fries) */
+  /* Feature-Boxen */
   .features {
     display: flex;
     justify-content: center;
@@ -120,113 +137,170 @@
 
   .box {
     background: #000000;
-    padding: 25px 15px;
+    padding: 25px 20px;
     border-radius: 20px;
-    width: 240px;
+    width: 260px;
     border: 1px solid #333;
-    transition: 0.2s;
+    transition: all 0.3s ease;
   }
 
   .box:hover {
     border-color: #ff7b00;
-    box-shadow: 0 0 15px #ff7b0040;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 123, 0, 0.2);
   }
 
   .box h3 {
     color: #ff7b00;
-    margin-bottom: 10px;
-    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
   }
 
   .box p {
-    line-height: 1.5;
+    line-height: 1.6;
     color: #ddd;
+    font-size: 1rem;
   }
 
   /* Menü-Bilder */
   .menu img {
     width: 100%;
     max-width: 860px;
-    margin: 25px auto;
+    margin: 30px auto;
     display: block;
     border-radius: 20px;
-    border: 2px solid #2a2a2a;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+    border: 2px solid #ff7b00;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+    transition: transform 0.3s ease;
+  }
+
+  .menu img:hover {
+    transform: scale(1.01);
+    border-color: #ff9500;
   }
 
   /* Überschriften */
   h2 {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     color: #ff7b00;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
   }
 
   /* Standort Text */
   .section p {
-    font-size: 1.3rem;
-    margin: 20px 0;
-    color: #f0f0f0;
+    font-size: 1.4rem;
+    margin: 25px 0;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 1px solid #ff7b00;
   }
 
-  /* Abstände bei den Buttons im Standortbereich */
-  .section .order-btn {
-    margin: 10px 8px;
+  /* Button-Container für bessere Anordnung */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
   }
 
   /* Footer */
   footer {
-    background: #0a0a0a;
+    background: #000000;
     text-align: center;
-    padding: 35px 20px;
-    margin-top: 50px;
-    border-top: 2px solid #ff7b00;
-    font-size: 1.1rem;
+    padding: 40px 20px;
+    margin-top: 60px;
+    border-top: 3px solid #ff7b00;
   }
 
   footer p {
-    margin: 8px 0;
-    color: #aaa;
+    margin: 10px 0;
+    color: #ccc;
+    font-size: 1.1rem;
   }
 
-  /* Kleine Anpassung für Mobil */
+  footer p:first-child {
+    color: #ff7b00;
+    font-weight: bold;
+  }
+
+  /* Mobile Anpassungen */
   @media (max-width: 600px) {
     .logo-img {
-      max-width: 260px;
+      max-width: 300px;
+      padding: 8px 15px;
     }
+    
     .slogan {
       font-size: 1rem;
+      padding: 0 10px;
     }
+    
     h2 {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
     }
+    
     .box {
       width: 100%;
-      max-width: 300px;
+      max-width: 320px;
     }
+    
+    .section p {
+      font-size: 1.2rem;
+      padding: 8px 20px;
+    }
+    
+    .button-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .order-btn {
+      width: 80%;
+      max-width: 300px;
+      margin: 5px 0;
+    }
+  }
+
+  /* Kleine Animation für den Header */
+  @keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(255, 123, 0, 0.3); }
+    50% { box-shadow: 0 0 35px rgba(255, 123, 0, 0.6); }
+    100% { box-shadow: 0 0 20px rgba(255, 123, 0, 0.3); }
+  }
+
+  .logo-img {
+    animation: glow 3s infinite ease-in-out;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <!-- Logo als Bild eingefügt (alt-Text für Barrierefreiheit) -->
+  <!-- Logo mit schwarzem Hintergrund -->
   <div class="logo-container">
     <img src="Logo.jpg" alt="Wing Spot Logo" class="logo-img">
   </div>
-  <!-- Der Slogan aus dem JPG: "Nicht nur Chicken Wings - ein echtes Geschmackserlebnis" -->
+  
+  <!-- Slogan aus dem JPG -->
   <div class="slogan">
     Nicht nur Chicken Wings – ein echtes Geschmackserlebnis
   </div>
   
-  <!-- WhatsApp-Button bleibt im Header, passt gut -->
+  <!-- WhatsApp-Button -->
   <a class="order-btn" href="https://wa.me/4915129641740">
     📱 Jetzt per WhatsApp bestellen
   </a>
 </header>
 
-<!-- Feature-Bereich: Frische Wings, Dips, Fries -->
+<!-- Feature-Bereich -->
 <div class="section">
   <div class="features">
     <div class="box">
@@ -256,24 +330,23 @@
   <h2>Standort</h2>
   <p>📍 Helfmann Park, Eschborn</p>
 
-  <!-- Wieder der WhatsApp-Button -->
-  <a class="order-btn" href="https://wa.me/4915129641740">
-    📲 Jetzt bestellen
-  </a>
+  <!-- Button-Container für bessere Anordnung -->
+  <div class="button-container">
+    <a class="order-btn" href="https://wa.me/4915129641740">
+      📲 Jetzt bestellen
+    </a>
 
-  <!-- Abstandshalter (optional, aber style schon über margin) -->
-  <div style="height: 10px;"></div>
-
-  <!-- Maps-Button in orange gehalten -->
-  <a class="order-btn maps-btn" href="https://maps.app.goo.gl/MmknDqViQUEWmQbZ9" target="_blank">
-    🗺️ Standort auf Google Maps anzeigen
-  </a>
+    <a class="order-btn maps-btn" href="https://maps.app.goo.gl/MmknDqViQUEWmQbZ9" target="_blank">
+      🗺️ Google Maps
+    </a>
+  </div>
 </div>
 
 <!-- Footer -->
 <footer>
   <p>© 2026 Wing Spot</p>
   <p>Telefon / WhatsApp: 01512 9641740</p>
+  <p>📍 Helfmann Park, Eschborn</p>
 </footer>
 
 </body>
