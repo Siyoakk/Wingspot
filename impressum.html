@@ -11,12 +11,31 @@
       background: #111;
       color: white;
       line-height: 1.6;
+      position: relative;
+    }
+    
+    /* Kleiner Flammen-Effekt wie auf der Hauptseite */
+    body::before {
+      content: "";
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1500px;
+      background: url('flames.gif') repeat-x bottom;
+      background-size: contain;
+      opacity: 0.4;
+      mix-blend-mode: screen;
+      z-index: 0;
+      pointer-events: none;
     }
     
     .container {
+      position: relative;
+      z-index: 2;
       max-width: 800px;
       margin: 50px auto;
-      padding: 30px;
+      padding: 40px;
       background: #1a1a1a;
       border-radius: 20px;
       border: 1px solid #ff7b00;
@@ -28,7 +47,9 @@
       font-size: 2.5rem;
       margin-bottom: 30px;
       border-bottom: 2px solid #ff7b00;
-      padding-bottom: 10px;
+      padding-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
     
     h2 {
@@ -36,6 +57,8 @@
       font-size: 1.3rem;
       margin-top: 25px;
       margin-bottom: 10px;
+      border-left: 3px solid #ff7b00;
+      padding-left: 10px;
     }
     
     p {
@@ -43,36 +66,107 @@
       color: #ddd;
     }
     
+    /* ============================================== */
+    /* ZURÜCK-LINK - HERVORGEHOBEN                     */
+    /* ============================================== */
+    .back-section {
+      text-align: center;
+      margin: 40px 0 20px 0;
+      padding: 20px 0;
+      border-top: 2px solid #333;
+      border-bottom: 2px solid #333;
+    }
+    
     .back-link {
-      display: inline-block;
-      margin-top: 30px;
-      color: #ff7b00;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ff7b00;
+      color: #000;
       text-decoration: none;
-      border: 1px solid #ff7b00;
-      padding: 10px 25px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      padding: 15px 40px;
       border-radius: 50px;
       transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(255, 123, 0, 0.5);
+      border: 2px solid #ff7b00;
     }
     
     .back-link:hover {
-      background: #ff7b00;
-      color: #000;
+      background: transparent;
+      color: #ff7b00;
       transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 123, 0, 0.8);
+    }
+    
+    /* Pfeil-Symbol */
+    .back-arrow {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+    
+    /* Optionaler zweiter Link unten */
+    .bottom-back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    .bottom-back a {
+      display: inline-block;
+      color: #ff7b00;
+      text-decoration: none;
+      border-bottom: 1px dotted #ff7b00;
+      padding-bottom: 3px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .bottom-back a:hover {
+      color: white;
+      border-bottom-color: white;
     }
     
     .legal-note {
-      margin-top: 40px;
+      margin-top: 30px;
       padding-top: 20px;
       border-top: 1px solid #333;
       font-size: 0.9rem;
       color: #888;
       text-align: center;
     }
+    
+    /* Responsive Anpassungen */
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 25px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .back-link {
+        font-size: 1.1rem;
+        padding: 12px 25px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Impressum</h1>
+    
+    <!-- ============================================== -->
+    <!-- HERVORGEHOBENER ZURÜCK-LINK GANZ OBEN           -->
+    <!-- ============================================== -->
+    <div class="back-section">
+      <a href="index.html" class="back-link">
+        <span class="back-arrow">←</span>
+        Zurück zur Hauptseite
+      </a>
+    </div>
     
     <h2>Angaben gemäß § 5 TMG</h2>
     <p><strong>Wing Spot GmbH</strong></p>
@@ -107,8 +201,12 @@
     <p><strong>Haftung für Links</strong></p>
     <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.</p>
     
-    <!-- Zurück-Link -->
-    <a href="index.html" class="back-link">← Zurück zur Webseite</a>
+    <!-- ============================================== -->
+    <!-- ZWEITER ZURÜCK-LINK UNTEN (für lange Seiten)    -->
+    <!-- ============================================== -->
+    <div class="bottom-back">
+      <a href="index.html">← Zurück zur Wing Spot Hauptseite</a>
+    </div>
     
     <div class="legal-note">
       <p>(Fiktives Impressum zu Demonstrationszwecken)</p>
