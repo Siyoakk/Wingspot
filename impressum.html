@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impressum - Wing Spot</title>
+  
+  <!-- ============================================== -->
+  <!-- FAVICONS - Gleiche wie auf der Hauptseite       -->
+  <!-- ============================================== -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+  
   <style>
     body {
       margin: 0;
@@ -14,7 +25,7 @@
       position: relative;
     }
     
-    /* Kleiner Flammen-Effekt wie auf der Hauptseite */
+    /* Flammen-Effekt wie auf der Hauptseite */
     body::before {
       content: "";
       position: fixed;
@@ -30,11 +41,49 @@
       pointer-events: none;
     }
     
+    /* ============================================== */
+    /* ZURÜCK BUTTON - OBEN LINS (fixiert)             */
+    /* ============================================== */
+    .back-button-top {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+    
+    .back-link-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ff7b00;
+      color: #000;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(255, 123, 0, 0.5);
+      border: 2px solid #ff7b00;
+    }
+    
+    .back-link-top:hover {
+      background: transparent;
+      color: #ff7b00;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 123, 0, 0.8);
+    }
+    
+    .back-arrow {
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    
     .container {
       position: relative;
       z-index: 2;
       max-width: 800px;
-      margin: 50px auto;
+      margin: 80px auto 50px auto; /* Mehr Abstand oben wegen fixiertem Button */
       padding: 40px;
       background: #1a1a1a;
       border-radius: 20px;
@@ -66,47 +115,27 @@
       color: #ddd;
     }
     
-    /* ============================================== */
-    /* ZURÜCK-LINK - HERVORGEHOBEN                     */
-    /* ============================================== */
-    .back-section {
+    /* Kleines Wing Spot Logo im Header der Impressum-Seite */
+    .mini-logo {
       text-align: center;
-      margin: 40px 0 20px 0;
-      padding: 20px 0;
-      border-top: 2px solid #333;
-      border-bottom: 2px solid #333;
+      margin-bottom: 20px;
     }
     
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #ff7b00;
-      color: #000;
-      text-decoration: none;
-      font-size: 1.3rem;
-      font-weight: bold;
-      padding: 15px 40px;
-      border-radius: 50px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(255, 123, 0, 0.5);
-      border: 2px solid #ff7b00;
+    .mini-logo img {
+      max-width: 150px;
+      height: auto;
+      background-color: #040402;
+      padding: 5px 15px;
+      border-radius: 30px;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
     }
     
-    .back-link:hover {
-      background: transparent;
-      color: #ff7b00;
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(255, 123, 0, 0.8);
+    .mini-logo img:hover {
+      opacity: 1;
     }
     
-    /* Pfeil-Symbol */
-    .back-arrow {
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-    
-    /* Optionaler zweiter Link unten */
+    /* Zweiter Zurück-Link unten (für lange Seiten) */
     .bottom-back {
       text-align: center;
       margin-top: 30px;
@@ -138,8 +167,18 @@
     
     /* Responsive Anpassungen */
     @media (max-width: 600px) {
+      .back-button-top {
+        top: 10px;
+        left: 10px;
+      }
+      
+      .back-link-top {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+      
       .container {
-        margin: 20px;
+        margin: 70px 15px 30px 15px;
         padding: 25px;
       }
       
@@ -147,26 +186,34 @@
         font-size: 2rem;
       }
       
-      .back-link {
-        font-size: 1.1rem;
-        padding: 12px 25px;
+      .mini-logo img {
+        max-width: 120px;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- ============================================== -->
+  <!-- ZURÜCK BUTTON - OBEN LINKS (fixiert)            -->
+  <!-- ============================================== -->
+  <div class="back-button-top">
+    <a href="index.html" class="back-link-top">
+      <span class="back-arrow">←</span>
+      Zurück zur Webseite
+    </a>
+  </div>
+
   <div class="container">
-    <h1>Impressum</h1>
     
-    <!-- ============================================== -->
-    <!-- HERVORGEHOBENER ZURÜCK-LINK GANZ OBEN           -->
-    <!-- ============================================== -->
-    <div class="back-section">
-      <a href="index.html" class="back-link">
-        <span class="back-arrow">←</span>
-        Zurück zur Hauptseite
+    <!-- Kleines Logo zur Wiedererkennung -->
+    <div class="mini-logo">
+      <a href="index.html">
+        <img src="Logo.jpg" alt="Wing Spot Logo">
       </a>
     </div>
+    
+    <h1>Impressum</h1>
     
     <h2>Angaben gemäß § 5 TMG</h2>
     <p><strong>Wing Spot GmbH</strong></p>
@@ -201,9 +248,7 @@
     <p><strong>Haftung für Links</strong></p>
     <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.</p>
     
-    <!-- ============================================== -->
-    <!-- ZWEITER ZURÜCK-LINK UNTEN (für lange Seiten)    -->
-    <!-- ============================================== -->
+    <!-- Zweiter Zurück-Link unten -->
     <div class="bottom-back">
       <a href="index.html">← Zurück zur Wing Spot Hauptseite</a>
     </div>
